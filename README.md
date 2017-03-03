@@ -12,5 +12,5 @@
 ####3 tydzień : Dodanie funkcji i załączenie odpowiednich grafik do projektu związanych z zakończeniem gry i możliwością kontynuoowania rozgrywki
 ####4 tydzień : Praca nad ekranem startowym zamiana wyboru kategorii z guzików tkinterze które są w bocznym panelu na kliknięcie nazwy kategorii w ekranie startowym
 ####5 tydzień : Schemat prac zostatnie dodany w 4 tygodniu w zależnoście od wykonych prac w projekcie
-####6 tydzień : Schemat prac zostatnie dodany w 4 tygodniu w zależnoście od wykonych prac w projekcie
-####7 tydzień : Schemat prac zostatnie dodany w 4 tygodniu w zależnoście od wykonych prac w projekcie
+####6 tydzień : Praca nad dokumentacją projektu
+####7 tydzień : Oddanie Projektu
