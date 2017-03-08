@@ -14,6 +14,7 @@ window.configure(background="#303030")
 tytulVar = tkinter.StringVar()
 tytulVar.set("WISIELEC THE GAME")
 
+
 tytul = tkinter.Label(window, textvariable=tytulVar, bg="#303030", fg="Blue", height=1, font='Arial 20')
 tytul.pack()
 tytul.place(x=160, y=5)
@@ -29,20 +30,18 @@ haslaPrzyslowia = ["bez pracy nie ma kołaczy", "biedny jak mysz koscielna", "ja
                    "człowiek człowiekowi wilkiem",
                    "do trzech razy sztuka"]
 
-hasloFilm = ["Chłopaki nie płaczą", "Brunet wieczorową porą", "Kariera nikodema dyzmy", "Pittbul niebezpieczne kobiety",
+haslaFilm = ["Chłopaki nie płaczą", "Brunet wieczorową porą", "Kariera nikodema dyzmy", "Pittbul niebezpieczne kobiety",
              "Forrest gump"
     , "Zielona mila", "Skazani na shawshank"]
 
-hasloGeografia = ["Wyspy owcze", "Wielka brytania", "Stany zjednoczone", "Warszawa", "Wybrzeże kości słoniowej",
+haslaGeografia = ["Wyspy owcze", "Wielka brytania", "Stany zjednoczone", "Warszawa", "Wybrzeże kości słoniowej",
                   "Republika południowej afryki"]
 
-hasloTest = ["Teeest", "Teeest"]
 
 
 def losujHaslo(x):
     hasloLosowe = random.choice(x)
     return hasloLosowe
-
 
 def dodajHaslo():
     wybierz = input(
@@ -56,7 +55,6 @@ def dodajHaslo():
     elif wybierz == 'g':
         newHas = input("Podaj swoje hasło do kategorii przysłowia:  ")
         hasloGeografia.append(newHas)
-
 
 def haslo(x):
     hasloZmiana = ""
@@ -90,27 +88,34 @@ szubienica7 = PhotoImage(file="s7.gif")
 szubienica8 = PhotoImage(file="s8.gif")
 szubienica9 = PhotoImage(file="s9.gif")
 szubienica10 = PhotoImage(file="gameover.gif")
-# szubienicaWin = PhotoImage(file="win.gif")
+szubienicaWin = PhotoImage(file="win.gif")
 
 rys1 = szubienica.create_image(250, 230, image=wstep)
 rys12 = szubienica.create_oval
 
 
-def zmien_obraz1():
-    rys21 = szubienica.create_image(250, 230, image=szubienica1)
-    rys22 = szubienica.create_oval
-
-
-def zmien_obraz2():
-    rys31 = szubienica.create_image(250, 230, image=szubienica2)
-    rys32 = szubienica.create_oval
+# def zmien_obraz1():
+#     rys21 = szubienica.create_image(250, 230, image=szubienica1)
+#     rys22 = szubienica.create_oval
+#
+#
+# def zmien_obraz2():
+#     rys31 = szubienica.create_image(250, 230, image=szubienica2)
+#     rys32 = szubienica.create_oval
 
 
 hasloZmiana = ""
 iter = 10
-RollPrz = losujHaslo(haslaPrzyslowia)
-odpowiedz = list(haslo(RollPrz))
 
+def start():
+    rys1 = szubienica.create_image(250, 230, image=wstep)
+    rys12 = szubienica.create_oval
+    tytulVar.set("Wisielec(THE HANGMAN)")
+    tytul.place(x=150, y=5)
+    tytulPrz = tkinter.StringVar()
+    tytulPrz.set("Wybierz Kategorie")
+    tytulFilm = tkinter.StringVar()
+    tytulFilm.set("Wybierz Kategorie")
 
 def get_text(x):
     litera = x
@@ -118,24 +123,35 @@ def get_text(x):
     global RollPrz
     global odpowiedz
     global hasloZmiana
+    global odpowiedz1
     LiczbaSzans = tkinter.Label(window, text="Pozostało Ci: " + str(iter) + " szans", bg="#303030", fg="red", height=1,
                                 font='Arial 8')
     LiczbaSzans.pack()
     LiczbaSzans.place(x=10, y=5)
 
-    labelHaslo = tkinter.Label(window, text="Twoje hasło to: " + str(hasloZmiana), bg="#303030", fg="red", height=1,
-                               font='Arial 16')
-    labelHaslo.pack()
-    labelHaslo.place(x=50, y=60)
+
+    # labelHaslo = tkinter.Label(window, text="Twoje hasło to: " + str(hasloZmiana), bg="#303030", fg="red", height=1,
+    #                            font='Arial 16')
+    # labelHaslo.pack()
+    # labelHaslo.place(x=50, y=60)
 
     HasKon = RollPrz
     RollPrz = list(RollPrz)
     for i in range(len(odpowiedz)):
         if RollPrz[i] == litera:
-            odpowiedz[i] = litera
-            print(odpowiedz)
 
-        elif odpowiedz.count('*') == 1:
+            odpowiedz[i] = litera
+            odpowiedz1 = ''
+            odpowiedz1 = (odpowiedz1.join(odpowiedz))
+            print(odpowiedz)
+            print(odpowiedz1)
+            labelHaslo = tkinter.Label(window, text="Twoje hasło to: " + str(odpowiedz1), bg="#303030", fg="red", height=1,
+                                       font='Arial 16')
+            labelHaslo.pack()
+            labelHaslo.place(x=50, y=60)
+
+
+        elif odpowiedz.count('*') == 1 :
             iter = 100
             rys75 = szubienica.create_image(250, 230, image=szubienicaWin)
             rys76 = szubienica.create_oval
@@ -179,54 +195,54 @@ def get_text(x):
         rys42 = szubienica.create_oval
 
 
+
+
 def przyslowiaKat():
     global iter
+    global odpowiedz
+    global RollPrz
+    RollPrz = ""
     iter = 10
     rys1 = szubienica.create_image(250, 230, image=szubienica0)
     rys12 = szubienica.create_oval
     tytulVar.set("PRZYSŁOWIA")
     tytul.place(x=190, y=5)
 
-    # Roll = losujHaslo(haslaPrzyslowia)
+    RollPrz = losujHaslo(haslaPrzyslowia)
+    odpowiedz = list(haslo(RollPrz))
     # losowanie hasla z listy przyslowia
-
-    labelHaslo = tkinter.Label(window, text="Twoje hasło to: " + str(haslo(RollPrz)), bg="#303030", fg="red", height=1,
+    print(hasloZmiana)
+    tytulPrz = tkinter.StringVar()
+    tytulPrz.set("Twoje hasło to: " + str(haslo(RollPrz)))
+    labelHaslo = tkinter.Label(window, textvariable=tytulPrz,  bg="#303030", fg="red", height=1,
                                font='Arial 16')
     labelHaslo.pack()
     labelHaslo.place(x=50, y=60)
-    # Wyświetlanie zakodowanego hasła
 
-    # HasKon = Roll
-    # odpowiedz = list(haslo(Roll))
+def filmKat():
+    global iter
+    global odpowiedz
+    global RollPrz
+    RollPrz = ""
+    iter = 10
+    rys1 = szubienica.create_image(250, 230, image=szubienica0)
+    rys12 = szubienica.create_oval
+    tytulVar.set("FILM")
+    tytul.place(x=190, y=5)
 
-    # while iter > 0:
-    #     Roll = list(Roll)
-    #     litera = input("")
-    #     for i in range(len(odpowiedz)):
-    #         if Roll[i] == litera:
-    #             odpowiedz[i] = litera
-    #     if odpowiedz.count('*') == 0:
-    #         print("Twoje hasło to:  " + HasKon)
-    #         print("               Gratulacje wygraleś               ")
-    #         print("Czy chcesz zagrać jeszcze raz ?? yes/no")
-    #         koniecczynie = input()
-    #         if koniecczynie == "y":
-    #             main()
-    #         elif koniecczynie == "n":
-    #             break
-    #
-    #
-    #     if litera not in Roll:
-    #         iter = iter - 1
-    #         print("Pozostało Ci " + str(iter) + " szans")
-    #         if iter == 0:
-    #             print("Przegrałeś ")
-    #             print("Czy chcesz zagrać jeszcze raz ?? yes/no")
-    #             koniecczynie = input()
-    #             if koniecczynie == "y":
-    #                 main()
-    #             elif koniecczynie == "n":
-    #                 break
+    RollPrz = losujHaslo(haslaFilm)
+    odpowiedz = list(haslo(RollPrz))
+    # losowanie hasla z listy przyslowia
+    print(hasloZmiana)
+
+    tytulFilm = tkinter.StringVar()
+    tytulFilm.set("Twoje hasło to:  "+str(haslo(RollPrz)))
+
+    labelHaslo = tkinter.Label(window, textvariable=tytulFilm,  bg="#303030", fg="red", height=1,
+                               font='Arial 16')
+    labelHaslo.pack()
+    labelHaslo.place(x=90, y=60)
+
 
 
 A = tkinter.Button(window, text="A", font=("Courier", 16, "bold"), background="blue", bd=7,
@@ -405,7 +421,7 @@ Z.place(x=350, y=670, width=35, height=35)
 Ż.place(x=430, y=670, width=35, height=35)
 
 START = tkinter.Button(window, text="START", font=("Courier", 16, "bold"), background="green", bd=7,
-                       command=close_window)
+                       command=start)
 START.pack(side='left')
 START.place(x=470, y=670, width=78, height=35)
 
@@ -413,15 +429,15 @@ EXIT = tkinter.Button(window, text="EXIT", font=("Courier", 16, "bold"), backgro
 EXIT.pack(side='left')
 EXIT.place(x=30, y=670, width=78, height=35)
 
-Pr = tkinter.Button(window, text="P", font=("Courier", 16, "bold"), background="#303030", command=przyslowiaKat)
+Pr = tkinter.Button(window, text="P", font=("Courier", 16, "bold"), background="#99FFCC", command=przyslowiaKat)
 Pr.pack(side='left')
 Pr.place(x=560, y=590, width=35, height=35)
 
-Fi = tkinter.Button(window, text="F", font=("Courier", 16, "bold"), background="#303030", command=close_window)
+Fi = tkinter.Button(window, text="F", font=("Courier", 16, "bold"), background="#00FF99", command=filmKat)
 Fi.pack(side='left')
 Fi.place(x=560, y=630, width=35, height=35)
 
-Ge = tkinter.Button(window, text="G", font=("Courier", 16, "bold"), background="#303030", command=close_window)
+Ge = tkinter.Button(window, text="G", font=("Courier", 16, "bold"), background="#339966", command=start)
 Ge.pack(side='left')
 Ge.place(x=560, y=670, width=35, height=35)
 
