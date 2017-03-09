@@ -15,6 +15,8 @@ tytulVar = tkinter.StringVar()
 tytulVar.set("WISIELEC THE GAME")
 
 
+
+
 tytul = tkinter.Label(window, textvariable=tytulVar, bg="#303030", fg="Blue", height=1, font='Arial 20')
 tytul.pack()
 tytul.place(x=160, y=5)
@@ -22,6 +24,23 @@ tytul.place(x=160, y=5)
 
 def close_window():
     window.destroy()
+
+
+menubar = Menu(window)
+filemenu = Menu(menubar, tearoff=0)
+menubar.add_cascade(label="Opcje",  menu=filemenu)
+filemenu.add_command(label="O grze", command=close_window)
+filemenu.add_separator()
+filemenu.add_command(label="Exit", command=close_window)
+window.config(menu=menubar)
+
+trainmenu = Menu(menubar, tearoff=0)
+menubar.add_cascade(label="Trening",  menu=trainmenu)
+trainmenu.add_command(label="Przysłowia", command=close_window)
+trainmenu.add_command(label="Film", command=close_window)
+trainmenu.add_command(label="Geografia", command=close_window)
+trainmenu.add_command(label="Zwierzeta", command=close_window)
+trainmenu.add_command(label="Informatyka", command=close_window)
 
 
 haslaPrzyslowia = ["bez pracy nie ma kołaczy", "biedny jak mysz koscielna", "jak kuba bogu tak bóg kubie",
@@ -32,10 +51,18 @@ haslaPrzyslowia = ["bez pracy nie ma kołaczy", "biedny jak mysz koscielna", "ja
 
 haslaFilm = ["Chłopaki nie płaczą", "Brunet wieczorową porą", "Kariera nikodema dyzmy", "Pittbul niebezpieczne kobiety",
              "Forrest gump"
-    , "Zielona mila", "Skazani na shawshank"]
+    , "Zielona mila", "Skazani na shawshank", "Deadpool", "harry potter i komnata tajemnic", "poszukiwany poszukiwana", "avengers czas ultrona",
+             "cezary pazura", "skazany na śmierć", "braking bad", "the walking dead", "house of cards", "leonardo di caprio", "piraci z karaibów"]
 
 haslaGeografia = ["Wyspy owcze", "Wielka brytania", "Stany zjednoczone", "Warszawa", "Wybrzeże kości słoniowej",
-                  "Republika południowej afryki"]
+                  "Republika południowej afryki", "wulkan kilimandżaro", "wyspy kanaryjskie"]
+
+haslaZwierzeta = []
+
+haslaPolska = []
+
+haslaInformatyka = []
+
 
 
 
@@ -151,10 +178,21 @@ def get_text(x):
             labelHaslo.place(x=50, y=60)
 
 
-        elif odpowiedz.count('*') == 1 :
+        elif odpowiedz.count('*') < 1 :
             iter = 100
             rys75 = szubienica.create_image(250, 230, image=szubienicaWin)
             rys76 = szubienica.create_oval
+            # YES = tkinter.Button(window, text="YES", font=("Courier", 16), background="blue", bd=4,
+            #                    command=lambda: get_text("a"))
+            # YES.pack(side='left')
+            # YES.place(x=130, y=200, width=50, height=40)
+            #
+            # NO = tkinter.Button(window, text="NO", font=("Courier", 16), background="blue", bd=4,
+            #                    command=lambda: get_text("a"))
+            # NO.pack(side='left')
+            # NO.place(x=230, y=200, width=50, height=40)
+
+            # Przygotowanie opcji kontynuacji rozgrywki
 
     if litera not in RollPrz:
         iter = iter - 1
@@ -440,5 +478,7 @@ Fi.place(x=560, y=630, width=35, height=35)
 Ge = tkinter.Button(window, text="G", font=("Courier", 16, "bold"), background="#339966", command=start)
 Ge.pack(side='left')
 Ge.place(x=560, y=670, width=35, height=35)
+
+
 
 window.mainloop()
