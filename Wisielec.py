@@ -1,5 +1,6 @@
 import random
 import tkinter
+import linecache
 from tkinter import *
 import runpy
 from random import randint
@@ -25,6 +26,31 @@ tytul.place(x=160, y=5)
 def close_window():
     window.destroy()
 
+def przyslowia():
+    przyslowiaWindow = tkinter.Tk()
+    przyslowiaWindow.title("Przysłowia trening")
+    przyslowiaWindow.geometry("300x250")
+    przyslowiaWindow.configure(background="#303030")
+    przyslowiaWindow.mainloop()
+
+def zwierzeta():
+    zwierzetaWindow = tkinter.Tk()
+    zwierzetaWindow.title("Zwierzeta trening")
+    zwierzetaWindow.geometry("300x250")
+    zwierzetaWindow.configure(background="#303030")
+    zwierzetaWindow.mainloop()
+    przysZ = Canvas(zwierzetaWindow, bg="blue", width="300", height="250")
+    przysZ.pack()
+    przysZ.place(x=10, y=10)
+    antylopa = PhotoImage(file="impala.gif")
+    antylopa1 = przysZ.create_image(1, 1, image=antylopa)
+    antylopa1 = przysZ.create_oval
+
+
+
+
+
+
 
 menubar = Menu(window)
 filemenu = Menu(menubar, tearoff=0)
@@ -36,18 +62,19 @@ window.config(menu=menubar)
 
 trainmenu = Menu(menubar, tearoff=0)
 menubar.add_cascade(label="Trening",  menu=trainmenu)
-trainmenu.add_command(label="Przysłowia", command=close_window)
+trainmenu.add_command(label="Przysłowia", command=przyslowia)
 trainmenu.add_command(label="Film", command=close_window)
 trainmenu.add_command(label="Geografia", command=close_window)
 trainmenu.add_command(label="Zwierzeta", command=close_window)
 trainmenu.add_command(label="Informatyka", command=close_window)
 
 
-haslaPrzyslowia = ["bez pracy nie ma kołaczy", "biedny jak mysz koscielna", "jak kuba bogu tak bóg kubie",
-                   "apetyt rośnie w miare jedzenia",
-                   "baba z wozu koniom lżej", "czas to pieniądz", "czuć się jak ryba w wodzie",
-                   "człowiek człowiekowi wilkiem",
-                   "do trzech razy sztuka"]
+
+haslaPrzyslowia = ["bez pracy nie ma kołaczy ", "biedny jak mysz koscielna ", "jak kuba bogu tak bóg kubie ",
+                   "apetyt rośnie w miare jedzenia ",
+                   "baba z wozu koniom lżej ", "czas to pieniądz ", "czuć się jak ryba w wodzie ",
+                   "człowiek człowiekowi wilkiem ",
+                   "do trzech razy sztuka "]
 
 haslaFilm = ["Chłopaki nie płaczą", "Brunet wieczorową porą", "Kariera nikodema dyzmy", "Pittbul niebezpieczne kobiety",
              "Forrest gump"
@@ -57,11 +84,21 @@ haslaFilm = ["Chłopaki nie płaczą", "Brunet wieczorową porą", "Kariera niko
 haslaGeografia = ["Wyspy owcze", "Wielka brytania", "Stany zjednoczone", "Warszawa", "Wybrzeże kości słoniowej",
                   "Republika południowej afryki", "wulkan kilimandżaro", "wyspy kanaryjskie"]
 
-haslaZwierzeta = []
+haslaZwierzeta = ["Antylopa" ]
 
-haslaPolska = []
+haslaPolska = ["Kazimierz dolny" ]
 
-haslaInformatyka = []
+haslaInformatyka = ["Programowanie"]
+
+
+plik = open("przyslowia.txt", "w")
+plik.write("***********************HASLA PRZYSLOWIA**************************")
+plik.write('\n')
+plik.write('\n'.join(haslaPrzyslowia))
+plik.write('\n')
+plik.write("************************HASLA FILM*******************************")
+plik.write('\n')
+plik.write('\n'.join(haslaFilm))
 
 
 
@@ -78,10 +115,10 @@ def dodajHaslo():
         haslaPrzyslowia.append(newHas)
     elif wybierz == 'f':
         newHas = input("Podaj swoje hasło do kategorii przysłowia:  ")
-        hasloFilm.append(newHas)
+        haslaFilm.append(newHas)
     elif wybierz == 'g':
         newHas = input("Podaj swoje hasło do kategorii przysłowia:  ")
-        hasloGeografia.append(newHas)
+        haslaGeografia.append(newHas)
 
 def haslo(x):
     hasloZmiana = ""
@@ -120,17 +157,6 @@ szubienicaWin = PhotoImage(file="win.gif")
 rys1 = szubienica.create_image(250, 230, image=wstep)
 rys12 = szubienica.create_oval
 
-
-# def zmien_obraz1():
-#     rys21 = szubienica.create_image(250, 230, image=szubienica1)
-#     rys22 = szubienica.create_oval
-#
-#
-# def zmien_obraz2():
-#     rys31 = szubienica.create_image(250, 230, image=szubienica2)
-#     rys32 = szubienica.create_oval
-
-
 hasloZmiana = ""
 iter = 10
 
@@ -156,12 +182,6 @@ def get_text(x):
     LiczbaSzans.pack()
     LiczbaSzans.place(x=10, y=5)
 
-
-    # labelHaslo = tkinter.Label(window, text="Twoje hasło to: " + str(hasloZmiana), bg="#303030", fg="red", height=1,
-    #                            font='Arial 16')
-    # labelHaslo.pack()
-    # labelHaslo.place(x=50, y=60)
-
     HasKon = RollPrz
     RollPrz = list(RollPrz)
     for i in range(len(odpowiedz)):
@@ -182,17 +202,6 @@ def get_text(x):
             iter = 100
             rys75 = szubienica.create_image(250, 230, image=szubienicaWin)
             rys76 = szubienica.create_oval
-            # YES = tkinter.Button(window, text="YES", font=("Courier", 16), background="blue", bd=4,
-            #                    command=lambda: get_text("a"))
-            # YES.pack(side='left')
-            # YES.place(x=130, y=200, width=50, height=40)
-            #
-            # NO = tkinter.Button(window, text="NO", font=("Courier", 16), background="blue", bd=4,
-            #                    command=lambda: get_text("a"))
-            # NO.pack(side='left')
-            # NO.place(x=230, y=200, width=50, height=40)
-
-            # Przygotowanie opcji kontynuacji rozgrywki
 
     if litera not in RollPrz:
         iter = iter - 1
@@ -232,9 +241,6 @@ def get_text(x):
         rys4 = szubienica.create_image(250, 230, image=szubienica10)
         rys42 = szubienica.create_oval
 
-
-
-
 def przyslowiaKat():
     global iter
     global odpowiedz
@@ -270,7 +276,7 @@ def filmKat():
 
     RollPrz = losujHaslo(haslaFilm)
     odpowiedz = list(haslo(RollPrz))
-    # losowanie hasla z listy przyslowia
+    # losowanie hasla z listy Film
     print(hasloZmiana)
 
     tytulFilm = tkinter.StringVar()
@@ -281,7 +287,27 @@ def filmKat():
     labelHaslo.pack()
     labelHaslo.place(x=90, y=60)
 
+def geografiaKat():
+    global iter
+    global odpowiedz
+    global RollPrz
+    RollPrz = ""
+    iter = 10
+    rys1 = szubienica.create_image(250, 230, image=szubienica0)
+    rys12 = szubienica.create_oval
+    tytulVar.set("GEOGRAFIA")
+    tytul.place(x=190, y=5)
 
+    RollPrz = losujHaslo(haslaGeografia)
+    odpowiedz = list(haslo(RollPrz))
+    # losowanie hasla z listy Geografia
+    print(hasloZmiana)
+    tytulPrz = tkinter.StringVar()
+    tytulPrz.set("Twoje hasło to: " + str(haslo(RollPrz)))
+    labelHaslo = tkinter.Label(window, textvariable=tytulPrz,  bg="#303030", fg="red", height=1,
+                               font='Arial 16')
+    labelHaslo.pack()
+    labelHaslo.place(x=50, y=60)
 
 A = tkinter.Button(window, text="A", font=("Courier", 16, "bold"), background="blue", bd=7,
                    command=lambda: get_text("a"))
@@ -475,10 +501,8 @@ Fi = tkinter.Button(window, text="F", font=("Courier", 16, "bold"), background="
 Fi.pack(side='left')
 Fi.place(x=560, y=630, width=35, height=35)
 
-Ge = tkinter.Button(window, text="G", font=("Courier", 16, "bold"), background="#339966", command=start)
+Ge = tkinter.Button(window, text="G", font=("Courier", 16, "bold"), background="#339966", command=geografiaKat)
 Ge.pack(side='left')
 Ge.place(x=560, y=670, width=35, height=35)
-
-
 
 window.mainloop()
