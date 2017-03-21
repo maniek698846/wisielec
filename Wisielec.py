@@ -333,6 +333,30 @@ def zwierzKat():
     labelHaslo.pack()
     labelHaslo.place(x=90, y=60)
 
+def PolKat():
+    global iter
+    global odpowiedz
+    global RollPrz
+    RollPrz = ""
+    iter = 10
+    rys1 = szubienica.create_image(250, 230, image=szubienica0)
+    rys12 = szubienica.create_oval
+    tytulVar.set("Informatyka")
+    tytul.place(x=190, y=5)
+
+    RollPrz = losujHaslo(haslaInformatyka)
+    odpowiedz = list(haslo(RollPrz))
+    # losowanie hasla z listy Film
+    print(hasloZmiana)
+
+    tytulFilm = tkinter.StringVar()
+    tytulFilm.set("Twoje hasło to:  "+str(haslo(RollPrz)))
+
+    labelHaslo = tkinter.Label(window, textvariable=tytulFilm,  bg="#303030", fg="red", height=1,
+                               font='Arial 16')
+    labelHaslo.pack()
+    labelHaslo.place(x=90, y=60)
+
 def infKat():
     global iter
     global odpowiedz
