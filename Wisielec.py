@@ -38,24 +38,62 @@ def zwierzeta():
     zwierzetaWindow.title("Zwierzeta trening")
     zwierzetaWindow.geometry("300x250")
     zwierzetaWindow.configure(background="#303030")
-    zwierzetaWindow.mainloop()
+
     przysZ = Canvas(zwierzetaWindow, bg="blue", width="300", height="250")
     przysZ.pack()
     przysZ.place(x=10, y=10)
     antylopa = PhotoImage(file="impala.gif")
     antylopa1 = przysZ.create_image(1, 1, image=antylopa)
     antylopa1 = przysZ.create_oval
+    zwierzetaWindow.mainloop()
+
+def Zasady():
+    ZasadyWindow = tkinter.Tk()
+    ZasadyWindow.title("Zasady")
+    ZasadyWindow.geometry("300x250")
+    ZasadyWindow.configure(background="#303030")
+    ZasadyInf = tkinter.Label(ZasadyWindow, text="Gra polega na odgadnięciu hasła z wybranej kategorii, "
+                                               "Gracz po wybraniu kategorii ma 10 prób na odgadnięcie hasła "
+                                               "jeśli uda mu się przed przekroczeniem granicy 10 prób to wygrywa. "
+                                               "Natomiast jeśli gracz przekroczy 10 prób to przegrywa." , bg="#303030", fg="white", height=10,
+                                font='Arial 12', wraplength=200)
+    ZasadyInf.pack()
+    ZasadyInf.place(x=50, y=20)
+    ZasadyWindow.mainloop()
 
 
+def oGrze():
+    oGrzeWindow = tkinter.Tk()
+    oGrzeWindow.title("Zasady")
+    oGrzeWindow.geometry("300x250")
+    oGrzeWindow.configure(background="#303030")
 
+    zdjecie1 = Canvas(oGrzeWindow, bg="Grey", width="133", height="170")
+    zdjecie1.pack()
+    zdjecie1.place(x=10, y=20)
 
+    zdjecieProf = PhotoImage(file="zdjecie.gif")
+
+    zdjecie1.create_image(133, 170, image=zdjecieProf)
+    zdjecie1.create_oval
+    oGrzeWindow.mainloop()
+
+# szubienica = Canvas(window, bg="Grey", width="500", height="450")
+# szubienica.pack()
+# szubienica.place(x=50, y=120)
+#
+# wstep = PhotoImage(file="wstep.gif")
+#
+# rys1 = szubienica.create_image(250, 230, image=wstep)
+# rys12 = szubienica.create_oval
 
 
 
 menubar = Menu(window)
 filemenu = Menu(menubar, tearoff=0)
 menubar.add_cascade(label="Opcje",  menu=filemenu)
-filemenu.add_command(label="O grze", command=close_window)
+filemenu.add_command(label="Zasady", command=Zasady)
+filemenu.add_command(label="Autor", command=oGrze)
 filemenu.add_separator()
 filemenu.add_command(label="Exit", command=close_window)
 window.config(menu=menubar)
@@ -65,7 +103,7 @@ menubar.add_cascade(label="Trening",  menu=trainmenu)
 trainmenu.add_command(label="Przysłowia", command=przyslowia)
 trainmenu.add_command(label="Film", command=close_window)
 trainmenu.add_command(label="Geografia", command=close_window)
-trainmenu.add_command(label="Zwierzeta", command=close_window)
+trainmenu.add_command(label="Zwierzeta", command=zwierzeta)
 trainmenu.add_command(label="Informatyka", command=close_window)
 
 
@@ -84,11 +122,11 @@ haslaFilm = ["Chłopaki nie płaczą", "Brunet wieczorową porą", "Kariera niko
 haslaGeografia = ["Wyspy owcze", "Wielka brytania", "Stany zjednoczone", "Warszawa", "Wybrzeże kości słoniowej",
                   "Republika południowej afryki", "wulkan kilimandżaro", "wyspy kanaryjskie"]
 
-haslaZwierzeta = ["Antylopa" ]
+haslaZwierzeta = ["Antylopa", "Żubr" ]
 
-haslaPolska = ["Kazimierz dolny" ]
+haslaPolska = ["Kazimierz dolny", "Krynica Morska" ]
 
-haslaInformatyka = ["Programowanie"]
+haslaInformatyka = ["Programowanie", "Bazy Danych"]
 
 
 plik = open("przyslowia.txt", "w")
@@ -577,4 +615,15 @@ Ge = tkinter.Button(window, text="G", font=("Courier", 16, "bold"), background="
 Ge.pack(side='left')
 Ge.place(x=560, y=670, width=35, height=35)
 
+In = tkinter.Button(window, text="I", font=("Courier", 16, "bold"), background="#339966", command=geografiaKat)
+In.pack(side='left')
+In.place(x=560, y=550, width=35, height=35)
+
+Zw = tkinter.Button(window, text="Z", font=("Courier", 16, "bold"), background="#339966", command=geografiaKat)
+Zw.pack(side='left')
+Zw.place(x=560, y=510, width=35, height=35)
+
+Po = tkinter.Button(window, text="Po", font=("Courier", 16, "bold"), background="#339966", command=geografiaKat)
+Po.pack(side='left')
+Po.place(x=560, y=470, width=35, height=35)
 window.mainloop()
