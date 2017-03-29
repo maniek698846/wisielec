@@ -34,17 +34,23 @@ def przyslowia():
     przyslowiaWindow.mainloop()
 
 def zwierzeta():
-    zwierzetaWindow = tkinter.Tk()
+    zwierzetaWindow = tkinter.Toplevel()
     zwierzetaWindow.title("Zwierzeta trening")
-    zwierzetaWindow.geometry("300x250")
+    zwierzetaWindow.geometry("300x220")
     zwierzetaWindow.configure(background="#303030")
 
-    przysZ = Canvas(zwierzetaWindow, bg="blue", width="300", height="250")
+    przysZ = Canvas(zwierzetaWindow, bg="blue", width="200", height="150")
     przysZ.pack()
-    przysZ.place(x=10, y=10)
+    przysZ.place(x=50, y=10)
     antylopa = PhotoImage(file="impala.gif")
-    antylopa1 = przysZ.create_image(1, 1, image=antylopa)
+    antylopa1 = przysZ.create_image(100, 75, image=antylopa)
     antylopa1 = przysZ.create_oval
+
+    e = Entry(zwierzetaWindow)
+    e.pack()
+    e.delete(0, END)
+    e.insert(0, "a default value")
+
     zwierzetaWindow.mainloop()
 
 def Zasady():
@@ -63,20 +69,25 @@ def Zasady():
 
 
 def oGrze():
-    oGrzeWindow = tkinter.Tk()
-    oGrzeWindow.title("Zasady")
-    oGrzeWindow.geometry("300x250")
-    oGrzeWindow.configure(background="#303030")
 
-    zdjecie1 = Canvas(oGrzeWindow, bg="Grey", width="133", height="170")
-    zdjecie1.pack()
-    zdjecie1.place(x=10, y=20)
+    window = tkinter.Toplevel()
+    window.title("Autor")
+    window.geometry("300x210")
+    window.configure(background="#303030")
 
-    zdjecieProf = PhotoImage(file="zdjecie.gif")
+    canvas = tkinter.Canvas(window, width="121", height="164")
+    canvas.place(x=10, y=20)
+    photo = tkinter.PhotoImage(file="photo.gif")
+    canvas.create_image(60, 90, image=photo)
 
-    zdjecie1.create_image(133, 170, image=zdjecieProf)
-    zdjecie1.create_oval
-    oGrzeWindow.mainloop()
+    autorInf = tkinter.Label(window, text="Nazywam się Mariusz Siennicki mam 22 lata, jestem studentem trzeciego roku informatyki w Państwowej "
+                                          "Wyższej Szkole Zawodowej w Ciechanowie .", bg="#303030",
+                              fg="white", height=10,
+                              font='Arial 12', wraplength=150)
+    autorInf.pack()
+    autorInf.place(x=145, y=10)
+
+    window.mainloop()
 
 # szubienica = Canvas(window, bg="Grey", width="500", height="450")
 # szubienica.pack()
@@ -124,9 +135,9 @@ haslaGeografia = ["Wyspy owcze", "Wielka brytania", "Stany zjednoczone", "Warsza
 
 haslaZwierzeta = ["Antylopa", "Żubr" ]
 
-haslaPolska = ["Kazimierz dolny", "Krynica Morska" ]
+haslaPolska = ["Kazimierz dolny", "Krynica Morska", "Krynica zdrój" ]
 
-haslaInformatyka = ["Programowanie", "Bazy Danych"]
+haslaInformatyka = ["Programowanie", "Bazy Danych", "Płyta głowna", "Microsoft office", "Microsoft Windows"]
 
 
 plik = open("przyslowia.txt", "w")
