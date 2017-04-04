@@ -18,6 +18,7 @@ tytulVar.set("WISIELEC THE GAME")
 
 
 
+
 tytul = tkinter.Label(window, textvariable=tytulVar, bg="#303030", fg="Blue", height=1, font='Arial 20')
 tytul.pack()
 tytul.place(x=160, y=5)
@@ -117,6 +118,11 @@ trainmenu.add_command(label="Geografia", command=close_window)
 trainmenu.add_command(label="Zwierzeta", command=zwierzeta)
 trainmenu.add_command(label="Informatyka", command=close_window)
 
+passmenu = Menu(menubar, tearoff=0)
+menubar.add_cascade(label="Hasła",  menu=passmenu)
+
+
+
 
 
 haslaPrzyslowia = ["bez pracy nie ma kołaczy ", "biedny jak mysz koscielna ", "jak kuba bogu tak bóg kubie ",
@@ -149,7 +155,42 @@ plik.write("************************HASLA FILM*******************************")
 plik.write('\n')
 plik.write('\n'.join(haslaFilm))
 
+# i = 0
+# haslPrzy = ""
+# for i in range(len(haslaPrzyslowia)):
+#     i += 1
+#
+#     haslPrzy =  haslPrzy + " " + haslaPrzyslowia[i] + '\n'
+#     print(haslPrzy)
 
+
+
+def PokPrzy():
+    i = 0
+    haslPrzy = ""
+    for item in haslaPrzyslowia:
+        haslPrzy = haslPrzy + " " + item + '\n'
+        print(haslPrzy)
+
+    haslPrz = tkinter.StringVar()
+    haslPrz.set(haslPrzy)
+
+    PokPrzyWindow = tkinter.Toplevel()
+    PokPrzyWindow.title("Zasady")
+    PokPrzyWindow.geometry("600x700")
+    PokPrzyWindow.configure(background="#303030")
+
+    PokPrzyInf = tkinter.Label(PokPrzyWindow,
+                             textvariable=haslPrz , bg="#303030",
+
+                             fg="white", height=10,
+                             font='Arial 12', wraplength=400)
+
+    PokPrzyInf.pack()
+    PokPrzyInf.place(x=50, y=20)
+    PokPrzyWindow.mainloop()
+
+passmenu.add_command(label="Przysłowia", command=PokPrzy)
 
 
 def losujHaslo(x):
